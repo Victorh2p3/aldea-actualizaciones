@@ -109,7 +109,7 @@
     <h1>ALDEA</h1>
     <p class="lema" style="margin-bottom:22px">Tu hogar, organizado. En tu móvil.</p>
     <div class="ya-bajada" style="display:none"></div>
-    <a class="boton descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/latest/download/ALDEA.apk">⬇ Descargar ALDEA</a>
+    <a class="boton descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.13/ALDEA-3.13.apk">⬇ Descargar ALDEA</a>
     <p class="nota">Pruébala gratis · Android 8 o superior · unos 25 MB</p>
     <button class="sec" id="b_info">Ver cómo instalarla</button>
     <button class="enlace" id="b_otra">↺ Ver el vídeo otra vez</button>
@@ -119,15 +119,15 @@
   <div class="caja">
     <h3>⬇ Descargando ALDEA…</h3>
     <ol>
-      <li><b>Cuando termine, ábrela:</b> toca el aviso «ALDEA.apk» que aparece arriba (desliza el dedo desde arriba),
-        o entra en la app <b>Archivos › Descargas</b> y toca <b>ALDEA.apk</b>.</li>
+      <li><b>Cuando termine, ábrela:</b> toca el aviso «ALDEA-…apk» que aparece arriba (desliza el dedo desde arriba),
+        o entra en la app <b>Archivos › Descargas</b> y toca el <b>ALDEA-…apk</b> más reciente.</li>
       <li><b>Si el navegador dice que el archivo ya existe,</b> elige <b>«Abrir»</b>: no hace falta descargarla otra vez.</li>
       <li>Si pide permiso para <b>instalar apps de origen desconocido</b>, actívalo para tu navegador y vuelve atrás.</li>
       <li><b>Play Protect</b> la revisa («Analizando…»). Cuando diga que no hay problemas, pulsa <b>Instalar</b>
         (si avisa, <b>Más detalles → Instalar igualmente</b>). <b>Si se cierra sin instalar,</b> vuelve a tocar
-        ALDEA.apk: la segunda vez instala directamente.</li>
+        el archivo: la segunda vez instala directamente.</li>
       <li><b>¿Quedó instalada?</b> Al terminar verás «App instalada» con el botón <b>Abrir</b>. Si no lo viste, busca el
-        icono de <b>cuatro cuadros de colores</b> entre tus aplicaciones; o toca ALDEA.apk: si dice «Abrir» o
+        icono de <b>cuatro cuadros de colores</b> entre tus aplicaciones; o toca el archivo: si dice «Abrir» o
         «Actualizar», ya la tienes.</li>
       <li><b>Al abrirla</b> escribe tu nombre y teléfono y pulsa «Enviar solicitud». Verás <b>«⏳ Esperando a que el
         autor la apruebe»</b>: cuando lo haga, se activa sola.</li>
@@ -135,7 +135,7 @@
     <div class="aviso-nav">Esta página no tiene anuncios. Si te aparece alguno (por ejemplo de Temu), lo pone el navegador
       de tu móvil: ciérralo y, si puedes, abre el enlace con <b>Chrome</b>.</div>
     <button class="ok" id="ayuda_ok">Entendido</button>
-    <a class="otra descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/latest/download/ALDEA.apk">¿No ha empezado? Descargar otra vez</a>
+    <a class="otra descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.13/ALDEA-3.13.apk">¿No ha empezado? Descargar otra vez</a>
   </div>
 </div>
 <main>
@@ -171,8 +171,8 @@
   <h2 id="pasos">Cómo conseguirla</h2>
   <div class="ya-bajada" style="display:none"></div>
   <ol class="pasos">
-    <li><b>Descarga la app</b><small>Con el botón de abajo, desde el móvil. Si ya la descargaste, no lo hagas otra vez: está en Archivos › Descargas › ALDEA.apk.</small></li>
-    <li><b>Instálala</b><small>Toca el aviso de la descarga o el archivo ALDEA.apk. Permite «instalar apps de origen desconocido». Si Play Protect avisa: Más detalles → Instalar igualmente.</small></li>
+    <li><b>Descarga la app</b><small>Con el botón de abajo, desde el móvil. Si ya la descargaste, no lo hagas otra vez: está en Archivos › Descargas › ALDEA-…apk (el más reciente).</small></li>
+    <li><b>Instálala</b><small>Toca el aviso de la descarga o el archivo ALDEA-…apk. Permite «instalar apps de origen desconocido». Si Play Protect avisa: Más detalles → Instalar igualmente.</small></li>
     <li><b>Pide el alta</b><small>Al abrirla escribe tu nombre y tu teléfono y pulsa «Enviar solicitud». ALDEA está en pruebas: por ahora solo se autoriza a conocidos del autor.</small></li>
     <li><b>Espera la aprobación</b><small>Cuando el autor la apruebe, la app se activa sola, sin copiar ni pegar nada. Si la cerraste, se activa al volver a abrirla.</small></li>
   </ol>
@@ -181,7 +181,7 @@
 
   <footer>ALDEA · © Víctor H. · autor y propietario</footer>
   <div class="barra-desc">
-    <a class="boton descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/latest/download/ALDEA.apk">⬇ Descargar ALDEA</a>
+    <a class="boton descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.13/ALDEA-3.13.apk">⬇ Descargar ALDEA</a>
   </div>
 </main>
 <script>
@@ -222,20 +222,28 @@
   });
   document.getElementById('ayuda_ok').onclick = function () { ayuda.className = 'ayuda'; };
   // Ya descargada en este navegador: avisar antes del boton para no descargarla otra vez
-  function guardarDescarga() { try { localStorage.setItem('aldea_descargada', new Date().toISOString().slice(0, 10)); } catch (e) {} }
+  // Version que descarga el boton (la pone promo/actualizar_pagina.py al publicar). El archivo lleva la version en el
+  // nombre (ALDEA-3.13.apk): un ALDEA.apk antiguo de Descargas ya no se confunde con el nuevo.
+  var VERSION_PAGINA = '3.13';
+  function guardarDescarga() {
+    try { localStorage.setItem('aldea_descargada', new Date().toISOString().slice(0, 10) + '|' + VERSION_PAGINA); } catch (e) {}
+  }
   Array.prototype.forEach.call(document.querySelectorAll('a.descargar'), function (a) { a.addEventListener('click', guardarDescarga); });
   (function avisarYaDescargada() {
     var f = null;
     try { f = localStorage.getItem('aldea_descargada'); } catch (e) {}
     if (!f) return;
-    var d = f.split('-');
+    var p = f.split('|'), d = p[0].split('-'), misma = p[1] === VERSION_PAGINA;
     Array.prototype.forEach.call(document.querySelectorAll('.ya-bajada'), function (caja) {
       caja.style.display = '';
-      caja.innerHTML = '<b>Ya descargaste ALDEA el ' + d[2] + '/' + d[1] + '.</b> No hace falta descargarla otra vez: '
-        + 'abre la app <b>Archivos › Descargas</b> y toca <b>ALDEA.apk</b>. Si ya la instalaste, búscala entre tus '
-        + 'aplicaciones (cuatro cuadros de colores).';
+      caja.innerHTML = misma
+        ? '<b>Ya descargaste ALDEA ' + VERSION_PAGINA + ' el ' + d[2] + '/' + d[1] + '.</b> No hace falta descargarla otra vez: '
+          + 'abre la app <b>Archivos › Descargas</b> y toca <b>ALDEA-' + VERSION_PAGINA + '.apk</b>. Si ya la instalaste, '
+          + 'búscala entre tus aplicaciones (cuatro cuadros de colores).'
+        : '<b>Hay una versión nueva: ALDEA ' + VERSION_PAGINA + '.</b> Descárgala con el botón de abajo y abre '
+          + '<b>ALDEA-' + VERSION_PAGINA + '.apk</b>. Los «ALDEA.apk» antiguos de Descargas puedes borrarlos.';
       var boton = caja.nextElementSibling;
-      if (boton && boton.classList.contains('descargar')) {
+      if (misma && boton && boton.classList.contains('descargar')) {
         boton.textContent = '⬇ Descargar de nuevo';
         boton.classList.add('secundario');
       }
