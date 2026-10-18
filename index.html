@@ -66,6 +66,31 @@
                  padding-left: 8px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
   html.con-intro .intro { display: block; }
   html.con-intro main { display: none; }
+  /* Pantalla final del video: descargar ya, sin tener que buscar el boton */
+  .final { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+           padding: 24px 20px; text-align: center; background: linear-gradient(180deg, var(--bg), var(--bg2)); }
+  .intro.terminado video, .intro.terminado .play { display: none; }
+  .intro.terminado .final { display: flex; }
+  .final .boton { width: 100%; max-width: 360px; font-size: 21px; padding: 18px; }
+  .final .sec { background: transparent; border: 1px solid var(--borde); color: var(--texto); border-radius: 40px; padding: 12px 20px;
+                font-size: 16px; width: 100%; max-width: 360px; margin-top: 10px; cursor: pointer; }
+  .final .enlace { background: none; border: 0; color: var(--gris); font-size: 15px; margin-top: 14px; cursor: pointer; }
+  /* Boton de descarga siempre a mano */
+  .barra-desc { position: sticky; bottom: 0; padding: 10px 0 12px; background: linear-gradient(180deg, transparent, var(--bg2) 35%); }
+  .barra-desc .boton { margin: 0; }
+  /* Ayuda tras pulsar descargar */
+  .ayuda { position: fixed; inset: 0; z-index: 20; background: rgba(0,0,0,.65); display: none; align-items: flex-end; justify-content: center; }
+  .ayuda.ver { display: flex; }
+  .ayuda .caja { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 20px 20px 0 0; padding: 20px 18px 24px;
+                 width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; }
+  .ayuda h3 { margin: 0 0 10px; font-size: 20px; }
+  .ayuda ol { padding-left: 22px; margin: 0; }
+  .ayuda li { margin: 8px 0; }
+  .ayuda small { color: var(--gris); }
+  .ayuda .ok { display: block; width: 100%; margin-top: 16px; background: var(--azul); color: #fff; border: 0; border-radius: 40px;
+               padding: 14px; font-size: 17px; font-weight: 700; cursor: pointer; }
+  .ayuda .otra { display: block; text-align: center; color: var(--gris); margin-top: 12px; font-size: 14px; }
+  .aviso-nav { margin-top: 14px; padding: 10px 12px; border-radius: 12px; background: rgba(224,168,74,.12); color: #f3d9a8; font-size: 14px; }
 </style>
 <script>document.documentElement.className += ' con-intro';</script>
 </head>
@@ -73,6 +98,34 @@
 <div class="intro" id="intro">
   <video id="intro_video" src="ALDEA_promo.mp4" poster="poster.jpg" playsinline preload="auto"></video>
   <button class="play" id="intro_play" aria-label="Ver el vídeo">▶</button>
+  <div class="final" id="final">
+    <div class="logo" aria-hidden="true">
+      <span style="background:var(--azul)"></span><span style="background:var(--verde)"></span>
+      <span style="background:var(--ambar)"></span><span style="background:var(--rosa)"></span>
+    </div>
+    <h1>ALDEA</h1>
+    <p class="lema" style="margin-bottom:22px">Tu hogar, organizado. En tu móvil.</p>
+    <a class="boton descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/latest/download/ALDEA.apk">⬇ Descargar ALDEA</a>
+    <p class="nota">Pruébala gratis · Android 8 o superior · unos 25 MB</p>
+    <button class="sec" id="b_info">Ver cómo instalarla</button>
+    <button class="enlace" id="b_otra">↺ Ver el vídeo otra vez</button>
+  </div>
+</div>
+<div class="ayuda" id="ayuda" role="dialog" aria-modal="true">
+  <div class="caja">
+    <h3>⬇ Descargando ALDEA…</h3>
+    <ol>
+      <li><b>Cuando termine, ábrela:</b> toca el aviso «ALDEA.apk» que aparece arriba (desliza el dedo desde arriba),
+        o entra en la app <b>Archivos › Descargas</b> y toca <b>ALDEA.apk</b>.</li>
+      <li><b>Si el navegador dice que el archivo ya existe,</b> elige <b>«Abrir»</b>: no hace falta descargarla otra vez.</li>
+      <li>Si pide permiso para <b>instalar apps de origen desconocido</b>, actívalo para tu navegador y vuelve atrás.</li>
+      <li>Si Play Protect avisa: <b>Más detalles → Instalar igualmente</b>.</li>
+    </ol>
+    <div class="aviso-nav">Esta página no tiene anuncios. Si te aparece alguno (por ejemplo de Temu), lo pone el navegador
+      de tu móvil: ciérralo y, si puedes, abre el enlace con <b>Chrome</b>.</div>
+    <button class="ok" id="ayuda_ok">Entendido</button>
+    <a class="otra descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/latest/download/ALDEA.apk">¿No ha empezado? Descargar otra vez</a>
+  </div>
 </div>
 <main>
   <div class="logo" aria-hidden="true">
@@ -81,7 +134,7 @@
   </div>
   <h1>ALDEA</h1>
   <p class="lema">Tu hogar, organizado. En tu móvil.</p>
-  <p class="apps">Flota · Casa · Inventario · Médico · Libros</p>
+  <p class="apps">Flota · Casa · Inventario · Médico · Libros · Mascotas</p>
 
   <div class="video">
     <video src="ALDEA_promo.mp4" poster="poster.jpg" controls playsinline preload="metadata"></video>
@@ -100,36 +153,63 @@
     <div class="modulos">
       <span style="background:var(--azul)">Flota</span><span style="background:var(--verde)">Casa</span>
       <span style="background:var(--ambar)">Inventario</span><span style="background:var(--rosa)">Médico</span>
-      <span style="background:var(--azul)">Libros</span><span style="background:var(--verde)">IA</span>
+      <span style="background:var(--azul)">Libros</span><span style="background:var(--rosa)">Mascotas</span><span style="background:var(--verde)">IA</span>
     </div>
   </section>
 
-  <h2>Cómo conseguirla</h2>
+  <h2 id="pasos">Cómo conseguirla</h2>
   <ol class="pasos">
-    <li><b>Descarga la app</b><small>Con el botón de abajo, desde el móvil.</small></li>
-    <li><b>Instálala</b><small>Permite «instalar apps de origen desconocido». Si Play Protect avisa: Más detalles → Instalar igualmente.</small></li>
+    <li><b>Descarga la app</b><small>Con el botón de abajo, desde el móvil. Si ya la descargaste, no lo hagas otra vez: está en Archivos › Descargas › ALDEA.apk.</small></li>
+    <li><b>Instálala</b><small>Toca el aviso de la descarga o el archivo ALDEA.apk. Permite «instalar apps de origen desconocido». Si Play Protect avisa: Más detalles → Instalar igualmente.</small></li>
     <li><b>Envía tu código de dispositivo</b><small>Al abrirla verás un código (p. ej. QRDZ-2VG7-…) y un botón para enviárselo al autor. No se pide teléfono ni correo.</small></li>
     <li><b>Actívala</b><small>Recibirás un código de activación: pulsa Pegar → Activar. Listo.</small></li>
   </ol>
 
-  <a class="boton" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/latest/download/ALDEA.apk">⬇ Descargar ALDEA</a>
-  <p class="nota">Android 8 o superior · móvil o tablet de 64 bits</p>
+  <p class="nota" style="margin-top:18px">Android 8 o superior · móvil o tablet de 64 bits · unos 25 MB</p>
 
   <footer>ALDEA · © Víctor H. · autor y propietario</footer>
+  <div class="barra-desc">
+    <a class="boton descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/latest/download/ALDEA.apk">⬇ Descargar ALDEA</a>
+  </div>
 </main>
 <script>
 (function () {
   var intro = document.getElementById('intro'), v = document.getElementById('intro_video'),
       play = document.getElementById('intro_play'), fin = false;
-  // Al terminar (o si el video no carga): sale de pantalla completa y aparece la pagina
+  function salirPantallaCompleta() {
+    try { if (document.fullscreenElement) document.exitFullscreen(); } catch (e) {}
+    try { if (document.webkitFullscreenElement) document.webkitExitFullscreen(); } catch (e) {}
+  }
+  function verPagina(ancla) {
+    document.documentElement.className = document.documentElement.className.replace(' con-intro', '');
+    var a = ancla && document.getElementById(ancla);
+    if (a) a.scrollIntoView({behavior: 'smooth'}); else window.scrollTo(0, 0);
+  }
+  // Al terminar el video: pantalla final con el boton de descargar a la vista
   function terminar() {
     if (fin) return;
     fin = true;
-    try { if (document.fullscreenElement) document.exitFullscreen(); } catch (e) {}
-    try { if (document.webkitFullscreenElement) document.webkitExitFullscreen(); } catch (e) {}
-    document.documentElement.className = document.documentElement.className.replace(' con-intro', '');
-    window.scrollTo(0, 0);
+    salirPantallaCompleta();
+    intro.className += ' terminado';
   }
+  // Si el video no carga: directamente la pagina
+  function sinVideo() { fin = true; salirPantallaCompleta(); verPagina(); }
+  document.getElementById('b_info').onclick = function () { verPagina('pasos'); };
+  document.getElementById('b_otra').onclick = function () {
+    fin = false;
+    intro.className = intro.className.replace(' terminado', '');
+    v.currentTime = 0;
+    lanzar();
+  };
+  // Al descargar: la pagina queda detras y sale la ayuda para encontrar y abrir el archivo
+  var ayuda = document.getElementById('ayuda');
+  Array.prototype.forEach.call(document.querySelectorAll('a.descargar'), function (a) {
+    a.addEventListener('click', function () {
+      setTimeout(function () { verPagina('pasos'); ayuda.className = 'ayuda ver'; }, 400);
+    });
+  });
+  document.getElementById('ayuda_ok').onclick = function () { ayuda.className = 'ayuda'; };
+  ayuda.addEventListener('click', function (e) { if (e.target === ayuda) ayuda.className = 'ayuda'; });
   function lanzar() {
     play.style.display = 'none';
     // Pantalla completa de verdad (sin barras del navegador); en iPhone, el reproductor propio
@@ -144,7 +224,7 @@
   v.onclick = function () { if (v.paused) lanzar(); };
   v.addEventListener('ended', terminar);
   v.addEventListener('webkitendfullscreen', function () { if (v.ended) terminar(); });
-  v.addEventListener('error', terminar);
+  v.addEventListener('error', sinVideo);
   // Si el navegador deja reproducirlo solo (con sonido), arranca sin pulsar
   v.play().then(function () { play.style.display = 'none'; }).catch(function () {});
 })();
