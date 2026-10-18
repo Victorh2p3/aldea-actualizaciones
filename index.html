@@ -58,9 +58,22 @@
   .modulos { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
   .modulos span { color: #fff; font-weight: 700; font-size: 15px; padding: 6px 14px; border-radius: 20px; }
   footer { text-align: center; color: var(--gris); font-size: 13px; margin-top: 40px; }
+  /* Intro: el video ocupa toda la pantalla; el texto de la pagina aparece cuando termina */
+  .intro { position: fixed; inset: 0; z-index: 10; background: #000; display: none; }
+  .intro video { width: 100vw; height: 100vh; height: 100dvh; object-fit: contain; }
+  .intro .play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 96px; height: 96px;
+                 border-radius: 50%; border: 0; background: rgba(74,144,217,.92); color: #fff; font-size: 40px;
+                 padding-left: 8px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
+  html.con-intro .intro { display: block; }
+  html.con-intro main { display: none; }
 </style>
+<script>document.documentElement.className += ' con-intro';</script>
 </head>
 <body>
+<div class="intro" id="intro">
+  <video id="intro_video" src="ALDEA_promo.mp4" poster="poster.jpg" playsinline preload="auto"></video>
+  <button class="play" id="intro_play" aria-label="Ver el vídeo">▶</button>
+</div>
 <main>
   <div class="logo" aria-hidden="true">
     <span style="background:var(--azul)"></span><span style="background:var(--verde)"></span>
@@ -104,5 +117,37 @@
 
   <footer>ALDEA · © Víctor H. · autor y propietario</footer>
 </main>
+<script>
+(function () {
+  var intro = document.getElementById('intro'), v = document.getElementById('intro_video'),
+      play = document.getElementById('intro_play'), fin = false;
+  // Al terminar (o si el video no carga): sale de pantalla completa y aparece la pagina
+  function terminar() {
+    if (fin) return;
+    fin = true;
+    try { if (document.fullscreenElement) document.exitFullscreen(); } catch (e) {}
+    try { if (document.webkitFullscreenElement) document.webkitExitFullscreen(); } catch (e) {}
+    document.documentElement.className = document.documentElement.className.replace(' con-intro', '');
+    window.scrollTo(0, 0);
+  }
+  function lanzar() {
+    play.style.display = 'none';
+    // Pantalla completa de verdad (sin barras del navegador); en iPhone, el reproductor propio
+    try {
+      if (intro.requestFullscreen) intro.requestFullscreen().catch(function () {});
+      else if (intro.webkitRequestFullscreen) intro.webkitRequestFullscreen();
+      else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+    } catch (e) {}
+    v.play().catch(function () { play.style.display = ''; });
+  }
+  play.onclick = lanzar;
+  v.onclick = function () { if (v.paused) lanzar(); };
+  v.addEventListener('ended', terminar);
+  v.addEventListener('webkitendfullscreen', function () { if (v.ended) terminar(); });
+  v.addEventListener('error', terminar);
+  // Si el navegador deja reproducirlo solo (con sonido), arranca sin pulsar
+  v.play().then(function () { play.style.display = 'none'; }).catch(function () {});
+})();
+</script>
 </body>
 </html>
