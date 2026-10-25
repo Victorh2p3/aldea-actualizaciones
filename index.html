@@ -94,11 +94,6 @@
   .ya-bajada { background:#fef3c7; color:#78350f; border-radius:14px; padding:12px 14px; margin:0 auto 12px; max-width:420px;
     font-size:.95rem; line-height:1.4; text-align:left; }
   a.descargar.secundario { background:#475569 !important; font-size:.95rem; }
-  /* Aviso del alta tras el video (25-oct-2026): quien descarga sin bajar a los pasos
-     tiene que saber que la app pide una solicitud. */
-  .final .aviso-alta { max-width: 420px; margin: 12px auto 4px; line-height: 1.45;
-    background: rgba(255,255,255,.08); border-radius: 12px; padding: 10px 14px; }
-  .final .aviso-alta b { color: #fff; }
 </style>
 <script>document.documentElement.className += ' con-intro';</script>
 </head>
@@ -112,14 +107,11 @@
       <span style="background:var(--ambar)"></span><span style="background:var(--rosa)"></span>
     </div>
     <h1>ALDEA</h1>
-    <p class="lema" style="margin-bottom:22px">Tu hogar, organizado. En tu móvil.</p>
+    <p class="lema" style="margin-bottom:26px">Tu hogar, organizado. En tu móvil.</p>
     <div class="ya-bajada" style="display:none"></div>
     <a class="boton descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.28/ALDEA-3.28.apk">⬇ Descargar ALDEA</a>
-    <p class="nota">Pruébala gratis · Android 8 o superior · unos 25 MB</p>
-    <p class="nota aviso-alta">Al abrirla, <b>pide el alta desde la app</b> (tu nombre y tu teléfono).
-      El autor la aprueba y se activa sola: ALDEA está en pruebas y por ahora solo se autoriza a conocidos.</p>
-    <button class="sec" id="b_info">Ver cómo instalarla</button>
-    <button class="enlace" id="b_otra">↺ Ver el vídeo otra vez</button>
+    <p class="nota">Gratis · Android 8 o superior · 25 MB</p>
+    <button class="enlace" id="b_info">Cómo se instala y se activa</button>
   </div>
 </div>
 <div class="ayuda" id="ayuda" role="dialog" aria-modal="true">
@@ -214,12 +206,6 @@
   // Si el video no carga: directamente la pagina
   function sinVideo() { fin = true; salirPantallaCompleta(); verPagina(); }
   document.getElementById('b_info').onclick = function () { verPagina('pasos'); };
-  document.getElementById('b_otra').onclick = function () {
-    fin = false;
-    intro.className = intro.className.replace(' terminado', '');
-    v.currentTime = 0;
-    lanzar();
-  };
   // Al descargar: la pagina queda detras y sale la ayuda para encontrar y abrir el archivo
   var ayuda = document.getElementById('ayuda');
   Array.prototype.forEach.call(document.querySelectorAll('a.descargar'), function (a) {
