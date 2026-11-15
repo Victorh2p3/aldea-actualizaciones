@@ -17,3 +17,6 @@
 
 /manual/img/*
   Cache-Control: public, max-age=604800
+
+/manual/video/*
+  Cache-Control: public, max-age=604800

@@ -73,6 +73,7 @@ figure{margin:0;flex:1 1 160px}figure img{width:100%;border-radius:20px;border:1
 figcaption{color:var(--suave);font-size:13px;text-align:center;margin-top:7px}
 /* tira «Así se ve» */
 .asi{margin:0 0 6px}.asi h2{margin-top:0}
+.vid{margin:0 0 18px}.vid h2{margin-top:0}.vid video{display:block;width:100%;max-width:300px;margin:0 auto;border-radius:22px;background:#000;box-shadow:var(--sombra-alta)}
 .tira{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 16px;scroll-snap-type:x proximity}
 .tira figure{flex:0 0 210px;scroll-snap-align:start}
 .tira figure img{border-radius:20px;box-shadow:var(--sombra-alta)}
