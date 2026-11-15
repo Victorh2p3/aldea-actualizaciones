@@ -1,11 +1,18 @@
-# Cabeceras para Cloudflare Pages (GitHub Pages ignora este archivo). Autor: VicH.
+# Cabeceras de seguridad para Cloudflare (GitHub Pages ignora este archivo; allí vale el <meta> CSP). Generado por promo/web_seguridad.py.
 /*
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-3E4bF8tyo2wOU+iFiZINyHyMc28AO/DWBagI842WmkQ=' 'sha256-T8KdBHjRbVcy5J7dqQjiQaxSXRunAXqUoHcDkJ5CvB0=' 'sha256-bQ8dqOQ36PuxZvfXGj5jTniT+zmbcZlRRl4tZp4QDc0='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'; frame-ancestors 'none'
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
   X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: accelerometer=(), autoplay=(self), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), fullscreen=(self)
+  Cross-Origin-Opener-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
 
 /activaciones.json
+  Cache-Control: no-cache, must-revalidate
+
+/correo.js
   Cache-Control: no-cache, must-revalidate
 
 /manual/img/*

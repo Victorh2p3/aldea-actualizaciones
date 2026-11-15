@@ -1,0 +1,5 @@
+# Para avisar de un fallo de seguridad de ALDEA (app o web). Gracias.
+Contact: https://aldea.aldea.workers.dev/#contacto
+Expires: 2027-11-15T00:00:00.000Z
+Preferred-Languages: es
+Canonical: https://aldea.aldea.workers.dev/.well-known/security.txt

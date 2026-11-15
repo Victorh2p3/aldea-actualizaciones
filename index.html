@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-3E4bF8tyo2wOU+iFiZINyHyMc28AO/DWBagI842WmkQ=' 'sha256-bQ8dqOQ36PuxZvfXGj5jTniT+zmbcZlRRl4tZp4QDc0='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'"><!-- csp-aldea -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ALDEA · Tu hogar, organizado</title>
@@ -298,6 +299,7 @@
     function cerrar(e) { if (e) e.preventDefault(); c.className = 'ayuda'; }
     document.getElementById('b_contacto').onclick = function (e) { e.preventDefault(); c.className = 'ayuda ver'; };
     document.getElementById('c_cerrar').onclick = cerrar;
+    if (location.hash === '#contacto') c.className = 'ayuda ver';
     c.onclick = function (e) { if (e.target === c) cerrar(); };
     document.getElementById('c_copiar').onclick = function () {
       var b = this, t = document.getElementById('c_correo').textContent;
