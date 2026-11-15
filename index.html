@@ -76,6 +76,15 @@
                 font-size: 16px; width: 100%; max-width: 360px; margin-top: 10px; cursor: pointer; }
   .final .enlace { background: none; border: 0; color: var(--gris); font-size: 15px; margin-top: 14px; cursor: pointer; }
   /* Boton de descarga siempre a mano */
+  .menu-sup { position: fixed; top: 0; left: 0; right: 0; z-index: 15; display: flex; align-items: center; gap: 4px;
+              padding: 8px 10px; background: rgba(18,21,27,.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+              border-bottom: 1px solid var(--borde); }
+  .menu-sup .marca { font-weight: 800; letter-spacing: .04em; color: var(--texto); text-decoration: none; margin-right: auto; padding: 6px 8px; }
+  .menu-sup a { color: var(--texto); text-decoration: none; font-size: 14px; font-weight: 600; padding: 7px 10px; border-radius: 18px; }
+  .menu-sup a:hover { background: #2a3446; }
+  .menu-sup a.desc { background: var(--azul); color: #fff; }
+  @media (max-width: 480px) { .menu-sup a { font-size: 13px; padding: 7px 8px; } .menu-sup .marca { padding: 6px 4px; } }
+  main { padding-top: 64px; }
   .barra-desc { position: sticky; bottom: 0; padding: 10px 0 12px; background: linear-gradient(180deg, transparent, var(--bg2) 35%); }
   .barra-desc .boton { margin: 0; }
   /* Ayuda tras pulsar descargar */
@@ -98,6 +107,13 @@
 <script>document.documentElement.className += ' con-intro';</script>
 </head>
 <body>
+<nav class="menu-sup" aria-label="Menú principal">
+  <a class="marca" href="index.html">ALDEA</a>
+  <a href="manual/index.html">📖 Manual</a>
+  <a href="privacidad.html">Privacidad</a>
+  <a href="mailto:aldea.vich.app@gmail.com">Contacto</a>
+  <a class="desc descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.53/ALDEA-3.53.apk">⬇ Descargar</a>
+</nav>
 <div class="intro" id="intro">
   <video id="intro_video" src="ALDEA_promo.mp4" poster="poster.jpg" playsinline preload="auto"></video>
   <button class="play" id="intro_play" aria-label="Ver el vídeo">▶</button>
