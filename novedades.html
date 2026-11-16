@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' ; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://aldea.aldea.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'"><!-- csp-aldea -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>ALDEA · Novedades</title>
+<meta name="description" content="Qué trae cada versión de ALDEA: mejoras, arreglos y cambios de licencia.">
+<meta name="theme-color" content="#12151b">
+<style>
+  :root { --bg: #12151b; --bg2: #1e2430; --tarjeta: #1a1d24; --borde: #2a2d36; --texto: #f0f1f4; --gris: #9a9aa5; --azul: #4a90d9; }
+  * { box-sizing: border-box; }
+  html { background: var(--bg2); }
+  body { margin: 0; background: linear-gradient(180deg, var(--bg), var(--bg2)) fixed; color: var(--texto);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.55; }
+  main { max-width: 640px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 30px; margin: 0 0 4px; }
+  .fecha { color: var(--gris); margin: 0 0 24px; font-size: 14px; }
+  h2 { font-size: 19px; margin: 28px 0 8px; }
+  section { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px; padding: 4px 16px 10px; margin-bottom: 12px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 6px; }
+  a { color: var(--azul); }
+  footer { color: var(--gris); font-size: 14px; text-align: center; margin-top: 28px; }
+  /* novedades */
+  .cuando { color: var(--gris); font-size: 14px; margin: -4px 0 10px; }
+  .marca { display: inline-block; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin: 0 6px 8px 0; }
+  .marca.actual { background: #3fb27f; color: #fff; font-size: 12px; vertical-align: middle; margin: 0 0 0 8px; }
+  .marca.lic { background: rgba(224,168,74,.18); color: #f3c97a; }
+  .marca.priv { background: rgba(74,144,217,.18); color: #9cc7f2; }
+  main section.ultima { box-shadow: 0 0 0 2px #3fb27f, 0 10px 26px rgba(0,0,0,.35); }
+  .intro-nov { color: var(--gris); margin: 0 0 22px; }
+  /* /novedades */
+  /* menu-web: menú superior común (promo/menu_web.py) */
+  body { padding-top: 54px; }
+  .menu-sup { position: fixed; top: 0; left: 0; right: 0; z-index: 15; display: flex; align-items: center; gap: 4px;
+              padding: 8px 10px; background: rgba(18,21,27,.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+              border-bottom: 1px solid #2a2d36; overflow-x: auto; white-space: nowrap; }
+  .menu-sup .marca { font-weight: 800; letter-spacing: .04em; margin-right: auto; padding: 6px 8px; }
+  .menu-sup a { color: #f0f1f4; text-decoration: none; font-size: 14px; font-weight: 600; padding: 7px 10px; border-radius: 18px; }
+  .menu-sup a:hover, .menu-sup a.activo { background: #2a3446; }
+  .menu-sup a.desc { background: #4a90d9; color: #fff; }
+  @media (max-width: 480px) { .menu-sup a { font-size: 13px; padding: 7px 8px; } .menu-sup .marca { padding: 6px 4px; } }
+  /* Aspecto alegre con los colores de la app (azul, verde, ámbar, rosa). 16-nov-2026 */
+  body { background:
+           radial-gradient(620px 420px at 0% 0%, rgba(74,144,217,.20), transparent 62%),
+           radial-gradient(520px 400px at 100% 18%, rgba(224,99,122,.16), transparent 62%),
+           radial-gradient(560px 420px at 0% 70%, rgba(224,168,74,.12), transparent 62%),
+           radial-gradient(640px 460px at 100% 100%, rgba(63,178,127,.15), transparent 62%),
+           linear-gradient(180deg, #12151b, #1e2430);
+         background-attachment: fixed; }
+  main > h1 { font-size: 34px; letter-spacing: -.01em; }
+  main > h1::before { content: ""; display: block; width: 58px; height: 58px; margin: 0 0 16px; border-radius: 16px;
+    background: linear-gradient(#4a90d9,#4a90d9) 0 0/46% 46% no-repeat, linear-gradient(#3fb27f,#3fb27f) 100% 0/46% 46% no-repeat,
+                linear-gradient(#e0a84a,#e0a84a) 0 100%/46% 46% no-repeat, linear-gradient(#e0637a,#e0637a) 100% 100%/46% 46% no-repeat;
+    filter: drop-shadow(0 6px 14px rgba(0,0,0,.35)); }
+  main > h1::after { content: ""; display: block; width: 150px; height: 6px; margin-top: 12px; border-radius: 6px;
+    background: linear-gradient(90deg, #4a90d9, #3fb27f, #e0a84a, #e0637a); }
+  main section { --c: #4a90d9; --cf: rgba(74,144,217,.13); position: relative; border: 1px solid rgba(255,255,255,.07);
+    border-left: 6px solid var(--c); border-radius: 18px; padding: 6px 20px 12px; margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--cf), transparent 65%), #1a1d24; box-shadow: 0 8px 22px rgba(0,0,0,.28);
+    transition: transform .2s, box-shadow .2s; }
+  main section:nth-of-type(4n+2) { --c: #3fb27f; --cf: rgba(63,178,127,.13); }
+  main section:nth-of-type(4n+3) { --c: #e0a84a; --cf: rgba(224,168,74,.14); }
+  main section:nth-of-type(4n+4) { --c: #e0637a; --cf: rgba(224,99,122,.13); }
+  @media (hover: hover) { main section:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(0,0,0,.38); } }
+  main section h2 { color: var(--c); font-size: 20px; display: flex; align-items: center; gap: 10px; }
+  main section h2::before { content: ""; flex: 0 0 12px; height: 12px; border-radius: 50%; background: var(--c);
+    box-shadow: 0 0 0 4px var(--cf); }
+  main section li::marker { color: var(--c); }
+  main section b, main section strong { color: #fff; }
+  /* /menu-web */
+</style>
+<!-- flota-desc --><style>
+  .flota-desc { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50;
+                display: inline-flex; align-items: center; gap: 6px; background: #4a90d9; color: #fff !important;
+                text-decoration: none !important; font: 800 16px/1.1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+                padding: 13px 18px; border-radius: 40px; box-shadow: 0 8px 24px rgba(0,0,0,.40); border: 2px solid rgba(255,255,255,.85); }
+  .flota-desc:hover { background: #3a7cc4; }
+  .flota-desc small { font-weight: 600; font-size: 12px; opacity: .85; }
+  body { padding-bottom: 76px; }
+  @media print { .flota-desc { display: none; } }
+</style><!-- /flota-desc -->
+</head>
+<body>
+<nav class="menu-sup" aria-label="Menú principal"><!-- menu-web -->
+  <a class="marca" href="index.html">ALDEA</a>
+  <a href="manual/index.html">📖 Manual</a>
+  <a class="activo" href="novedades.html" aria-current="page">✨ Novedades</a>
+  <a href="privacidad.html">Privacidad</a>
+  <a href="opiniones.html">⭐ Opiniones</a>
+  <a href="terminos.html">Términos</a>
+  <a href="index.html#contacto">Contacto</a>
+  <a class="desc" href="index.html">⬇ Descargar</a>
+</nav><!-- /menu-web -->
+<main>
+  <h1>✨ Novedades</h1>
+  <p class="intro-nov">Qué trae cada versión de ALDEA, de la más nueva a la más antigua. Son los mismos textos que ves en la app al actualizar. La app avisa sola cuando hay una versión nueva (o pulsa <b>Buscar actualizaciones</b>).</p>
+
+  <section class="ultima">
+    <h2>ALDEA 3.59 <span class="marca actual">Versión actual</span></h2>
+    <p class="cuando">16 nov 2026</p>
+    <p>Escanear documentos de varias páginas: nuevo botón «Varias páginas» en Vehículos, Salud y el escáner, una foto por página (hasta 5), y se leen juntas como un solo documento. En Vehículos se guardan todas las páginas. También puedes elegir varias fotos de la galería.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.58</h2>
+    <p class="cuando">16 nov 2026</p>
+    <p>Vehículos: al escanear con la IA, ahora también lee la confirmación de cita de la ITV (fecha, hora, estación y código) y acepta las matrículas antiguas de provincia.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.57</h2>
+    <p class="cuando">16 nov 2026</p>
+    <span class="marca lic">📜 Licencia nueva: se acepta al actualizar</span><p>Nueva licencia (versión 7, léela al actualizar): el alta de cada móvil normalmente se aprueba al momento y ALDEA se activa sola. La casilla para aceptar la IA ahora es grande y se ve bien.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.56</h2>
+    <p class="cuando">16 nov 2026</p>
+    <p>Pantalla de presentación con el logo de ALDEA al abrir la app. Textos del alta más claros: normalmente se aprueba al momento.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.55</h2>
+    <p class="cuando">16 nov 2026</p>
+    <span class="marca priv">🔒 Aviso de privacidad actualizado</span><p>Nuevo: «Dejar mi opinión» en Ayuda y contacto. Puedes valorar ALDEA con estrellas y unas palabras; si el autor la aprueba, se publica en la web con el alias que elijas (sin tu nombre ni tu teléfono). Por eso se actualiza el aviso de privacidad.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.54</h2>
+    <p class="cuando">15 nov 2026</p>
+    <span class="marca priv">🔒 Aviso de privacidad actualizado</span><p>El servidor del autor pasa a Cloudflare: más fiable y siempre disponible. Por eso se actualiza el aviso de privacidad (lo verás al abrir la app). Además: icono nuevo, iconos de los módulos renovados y acceso a la página web desde Ayuda y contacto.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.53</h2>
+    <p class="cuando">15 nov 2026</p>
+    <p>IA más segura: antes de activarla hay que marcar una casilla de consentimiento (los datos, también los de salud, salen hacia la empresa que elijas); tu clave de IA se guarda cifrada en el móvil; si restauras una copia hay que aceptar el aviso otra vez y no tienes que volver a pegar la clave. Avisos de «generado por IA» al leer analíticas y al buscar el precio de un vino.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.52</h2>
+    <p class="cuando">14 nov 2026</p>
+    <p>Nuevo: Copia de seguridad &gt; Empezar de cero, para quitar de golpe los datos de ejemplo o de prueba (conserva tu activación y tu clave de IA).</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.51</h2>
+    <p class="cuando">14 nov 2026</p>
+    <p>Mascotas: borrar una ficha (por ejemplo la de ejemplo) es fácil: botón en su ficha y lista «Mis mascotas» en Ajustes.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.50</h2>
+    <p class="cuando">14 nov 2026</p>
+    <p>Cuidado: todas las categorías siempre visibles, «Limpieza facial» y similares ya no salen como creados por ti ni se duplican.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.49</h2>
+    <p class="cuando">14 nov 2026</p>
+    <p>Cuidado y Casa: la IA propone corregir categorías. Mascotas: busca y quita registros repetidos, con deshacer.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.48</h2>
+    <p class="cuando">14 nov 2026</p>
+    <p>Vehículos: la IA puede proponerte unir repuestos repetidos (se suman las unidades) y se puede deshacer. Salud: «Quitar persona» queda lejos de «Guardar» y el formulario de revisiones de la medicación se pliega.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.47</h2>
+    <p class="cuando">14 nov 2026</p>
+    <p>La IA también puede proponerte correcciones en Libros (categoría y estantería) y en Vinoteca (tipo de vino y crianza): tú marcas cuáles aplicar.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.46</h2>
+    <p class="cuando">14 nov 2026</p>
+    <p>El escáner lleva el documento directamente a su sitio cuando la IA lo tiene claro, y si duda te da a elegir. Inventario: la IA puede proponer unir artículos repetidos; tú marcas cuáles, y se puede deshacer. Tras «Revisar mis datos», botón para que proponga cómo arreglar lo que ha encontrado.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.45</h2>
+    <p class="cuando">13 nov 2026</p>
+    <p>Más seguridad: la activación queda ligada a tu instalación, ALDEA pregunta antes de abrir una web que no has pedido y las pantallas de Vehículos aceptan cualquier texto (comillas incluidas) sin estropearse.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.44</h2>
+    <p class="cuando">13 nov 2026</p>
+    <p>Seguridad reforzada: ALDEA comprueba que sus conexiones internas son suyas antes de abrirse, valida mejor los encargos que llegan por enlace y limita de dónde se descargan las fotos de la tienda.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.43</h2>
+    <p class="cuando">13 nov 2026</p>
+    <p>Arreglos: la copia de seguridad, exportar a Excel y restaurar funcionan también desde la pantalla de aviso de licencia. En modo consulta la papelera ya no borra nada y la licencia se vuelve a comprobar al volver a la app. Salud: una hora escrita como «14:00h» ya no cuenta como pastillas.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.42</h2>
+    <p class="cuando">13 nov 2026</p>
+    <span class="marca lic">📜 Licencia nueva: se acepta al actualizar</span><p>Nueva licencia (léela al actualizar): ALDEA es gratuita ahora y está previsto que más adelante sea de pago, con aviso y precio. Si no pagas un módulo, seguirá funcionando con límites y con publicidad que no recoge tus datos. Tus datos no se bloquean nunca: siempre puedes verlos, copiarlos y exportarlos a Excel.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.41</h2>
+    <p class="cuando">13 nov 2026</p>
+    <p>Salud: el pastillero ya no suma la hora como pastillas; los medicamentos «si hace falta» tienen su propio apartado; en el móvil cada medicamento se ve como una ficha; fechas más claras y «Ajustes de Salud» en un solo sitio. Inicio ordenado en Tus datos, Ajustes y Ayuda, con «Ajustes de cada app». «Flota» pasa a llamarse «Vehículos».</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.40</h2>
+    <p class="cuando">13 nov 2026</p>
+    <p>IA revisada: Groq vuelve a funcionar con modelos nuevos y DeepSeek se actualiza; Together AI y DeepInfra ya no están disponibles (elige otra IA si los usabas). Google: puedes usar su plan gratuito o el de pago, según tu cuenta; lo explica al elegirlo. Textos más claros en la IA y en la licencia.</p>
+  </section>
+  <section>
+    <h2>ALDEA 3.39</h2>
+    <p class="cuando">13 nov 2026</p>
+    <span class="marca lic">📜 Licencia nueva: se acepta al actualizar</span><span class="marca priv">🔒 Aviso de privacidad actualizado</span><p>ALDEA es gratuita. Nueva licencia y aviso de privacidad más claros, con contacto. Si no se puede confirmar la licencia, puedes seguir viendo tus datos y haciendo copias (modo consulta). IA: la clave de Google viaja más protegida y OpenRouter ya no se usa con datos de Salud.</p>
+  </section>
+  <footer>ALDEA · © VicH. · autor y propietario · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="index.html">Volver a la descarga</a></footer>
+</main>
+<script src="correo.js" defer></script>
+<!-- flota-desc --><a class="flota-desc" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.59/ALDEA-3.59.apk" aria-label="Descargar ALDEA 3.59 para Android">⬇ Descargar ALDEA <small>3.59</small></a><!-- /flota-desc -->
+</body>
+</html>
