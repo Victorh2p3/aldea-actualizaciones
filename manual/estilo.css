@@ -47,6 +47,9 @@ box-shadow:var(--sombra-alta);max-height:calc(100vh - 56px);overflow-y:auto;padd
 main{max-width:860px;margin:0 auto;padding:26px 16px 60px}
 main.ancho{max-width:1040px}
 h2{font-size:23px;line-height:1.25;margin:38px 0 12px;padding:2px 0 2px 14px;border-left:6px solid var(--ac);scroll-margin-top:70px}
+/* apartado al que se llega desde el buscador o un enlace: se ilumina un momento (menu.js) */
+h2.destino{animation:destino 2.6s ease-out}
+@keyframes destino{0%,35%{background:var(--ac);color:#fff;border-radius:10px}100%{background:transparent}}
 h3{font-size:18px;margin:22px 0 6px;color:var(--ac2)}
 @media(prefers-color-scheme:dark){h3{color:var(--link)}}
 p{margin:0 0 13px}ul,ol{padding-left:24px;margin:0 0 15px}li{margin:5px 0}
