@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-C2EQ0bL4ufJwvEFaNKfyIRrh0637BW3b57C8b5HrzNg=' 'sha256-bQ8dqOQ36PuxZvfXGj5jTniT+zmbcZlRRl4tZp4QDc0='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://aldea.aldea.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'"><!-- csp-aldea -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-bQ8dqOQ36PuxZvfXGj5jTniT+zmbcZlRRl4tZp4QDc0=' 'sha256-dwfoQ7aPtfJPqvtujm6d76p/ovb+dO9isMPBj+U7Rtw='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://aldea.aldea.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'"><!-- csp-aldea -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -75,7 +76,15 @@
   /* Pantalla final del video: descargar ya, sin tener que buscar el boton */
   .final { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
            padding: 24px 20px; text-align: center; background: linear-gradient(180deg, var(--bg), var(--bg2)); }
-  .intro.terminado video, .intro.terminado .play { display: none; }
+  .intro.terminado video, .intro.terminado .play, .intro.terminado .saltar { display: none; }
+  /* Durante el video: descargar o saltar sin esperar a que termine (dentro de .intro, que es lo que va a pantalla completa) */
+  .saltar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; gap: 10px; justify-content: center;
+            flex-wrap: wrap; padding: 14px 14px calc(18px + env(safe-area-inset-bottom));
+            background: linear-gradient(180deg, transparent, rgba(0,0,0,.75)); }
+  .saltar a.descargar { background: var(--azul); color: #fff; text-decoration: none; font-weight: 800; font-size: 17px;
+            padding: 13px 22px; border-radius: 40px; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+  .saltar button { background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 40px;
+            font-size: 15px; font-weight: 600; padding: 12px 18px; cursor: pointer; }
   .intro.terminado .final { display: flex; }
   .final .boton { width: 100%; max-width: 360px; font-size: 21px; padding: 18px; }
   .final .sec { background: transparent; border: 1px solid var(--borde); color: var(--texto); border-radius: 40px; padding: 12px 20px;
@@ -125,6 +134,10 @@
 <div class="intro" id="intro">
   <video id="intro_video" src="ALDEA_promo.mp4" poster="poster.jpg" playsinline preload="auto"></video>
   <button class="play" id="intro_play" aria-label="Ver el vídeo">▶</button>
+  <div class="saltar">
+    <a class="descargar" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.56/ALDEA-3.56.apk">⬇ Descargar ya</a>
+    <button id="intro_saltar">Saltar vídeo ›</button>
+  </div>
   <div class="final" id="final">
     <div class="logo" aria-hidden="true">
       <span style="background:var(--azul)"></span><span style="background:var(--verde)"></span>
@@ -248,6 +261,8 @@
   var ayuda = document.getElementById('ayuda');
   Array.prototype.forEach.call(document.querySelectorAll('a.descargar'), function (a) {
     a.addEventListener('click', function () {
+      // Si el video aun va: pararlo y salir de pantalla completa para que se vea la ayuda
+      if (!fin) { fin = true; try { v.pause(); } catch (e) {} salirPantallaCompleta(); }
       setTimeout(function () { verPagina('pasos'); ayuda.className = 'ayuda ver'; }, 400);
     });
   });
@@ -292,6 +307,8 @@
     v.play().catch(function () { play.style.display = ''; });
   }
   play.onclick = lanzar;
+  // Saltar el video: pantalla final con el boton de descargar
+  document.getElementById('intro_saltar').onclick = function () { try { v.pause(); } catch (e) {} terminar(); };
   v.onclick = function () { if (v.paused) lanzar(); };
   v.addEventListener('ended', terminar);
   v.addEventListener('webkitendfullscreen', function () { if (v.ended) terminar(); });
