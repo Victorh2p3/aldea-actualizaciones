@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-Js+jef1ecD3uLIn+9mL8BLmTx+JEgByNN7l8w6ePH8Q='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://aldea.aldea.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'"><!-- csp-aldea -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -34,9 +35,29 @@
   .nota h2 { font-size: 18px; margin: 12px 0 6px; }
   a { color: var(--azul); }
   footer { color: var(--gris); font-size: 14px; text-align: center; margin-top: 28px; }
+  /* menu-web: menú superior común (promo/menu_web.py) */
+  body { padding-top: 54px; }
+  .menu-sup { position: fixed; top: 0; left: 0; right: 0; z-index: 15; display: flex; align-items: center; gap: 4px;
+              padding: 8px 10px; background: rgba(18,21,27,.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+              border-bottom: 1px solid #2a2d36; overflow-x: auto; white-space: nowrap; }
+  .menu-sup .marca { font-weight: 800; letter-spacing: .04em; margin-right: auto; padding: 6px 8px; }
+  .menu-sup a { color: #f0f1f4; text-decoration: none; font-size: 14px; font-weight: 600; padding: 7px 10px; border-radius: 18px; }
+  .menu-sup a:hover, .menu-sup a.activo { background: #2a3446; }
+  .menu-sup a.desc { background: #4a90d9; color: #fff; }
+  @media (max-width: 480px) { .menu-sup a { font-size: 13px; padding: 7px 8px; } .menu-sup .marca { padding: 6px 4px; } }
+  /* /menu-web */
 </style>
 </head>
 <body>
+<nav class="menu-sup" aria-label="Menú principal"><!-- menu-web -->
+  <a class="marca" href="index.html">ALDEA</a>
+  <a href="manual/index.html">📖 Manual</a>
+  <a href="privacidad.html">Privacidad</a>
+  <a class="activo" href="opiniones.html" aria-current="page">⭐ Opiniones</a>
+  <a href="terminos.html">Términos</a>
+  <a href="index.html#contacto">Contacto</a>
+  <a class="desc" href="index.html">⬇ Descargar</a>
+</nav><!-- /menu-web -->
 <main>
   <h1>⭐ Opiniones</h1>
   <p class="sub">De personas que usan ALDEA. Solo se pueden dejar desde la propia app.</p>
