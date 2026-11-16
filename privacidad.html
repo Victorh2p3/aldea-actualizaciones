@@ -37,6 +37,34 @@
   .menu-sup a:hover, .menu-sup a.activo { background: #2a3446; }
   .menu-sup a.desc { background: #4a90d9; color: #fff; }
   @media (max-width: 480px) { .menu-sup a { font-size: 13px; padding: 7px 8px; } .menu-sup .marca { padding: 6px 4px; } }
+  /* Aspecto alegre con los colores de la app (azul, verde, ámbar, rosa). 16-nov-2026 */
+  body { background:
+           radial-gradient(620px 420px at 0% 0%, rgba(74,144,217,.20), transparent 62%),
+           radial-gradient(520px 400px at 100% 18%, rgba(224,99,122,.16), transparent 62%),
+           radial-gradient(560px 420px at 0% 70%, rgba(224,168,74,.12), transparent 62%),
+           radial-gradient(640px 460px at 100% 100%, rgba(63,178,127,.15), transparent 62%),
+           linear-gradient(180deg, #12151b, #1e2430);
+         background-attachment: fixed; }
+  main > h1 { font-size: 34px; letter-spacing: -.01em; }
+  main > h1::before { content: ""; display: block; width: 58px; height: 58px; margin: 0 0 16px; border-radius: 16px;
+    background: linear-gradient(#4a90d9,#4a90d9) 0 0/46% 46% no-repeat, linear-gradient(#3fb27f,#3fb27f) 100% 0/46% 46% no-repeat,
+                linear-gradient(#e0a84a,#e0a84a) 0 100%/46% 46% no-repeat, linear-gradient(#e0637a,#e0637a) 100% 100%/46% 46% no-repeat;
+    filter: drop-shadow(0 6px 14px rgba(0,0,0,.35)); }
+  main > h1::after { content: ""; display: block; width: 150px; height: 6px; margin-top: 12px; border-radius: 6px;
+    background: linear-gradient(90deg, #4a90d9, #3fb27f, #e0a84a, #e0637a); }
+  main section { --c: #4a90d9; --cf: rgba(74,144,217,.13); position: relative; border: 1px solid rgba(255,255,255,.07);
+    border-left: 6px solid var(--c); border-radius: 18px; padding: 6px 20px 12px; margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--cf), transparent 65%), #1a1d24; box-shadow: 0 8px 22px rgba(0,0,0,.28);
+    transition: transform .2s, box-shadow .2s; }
+  main section:nth-of-type(4n+2) { --c: #3fb27f; --cf: rgba(63,178,127,.13); }
+  main section:nth-of-type(4n+3) { --c: #e0a84a; --cf: rgba(224,168,74,.14); }
+  main section:nth-of-type(4n+4) { --c: #e0637a; --cf: rgba(224,99,122,.13); }
+  @media (hover: hover) { main section:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(0,0,0,.38); } }
+  main section h2 { color: var(--c); font-size: 20px; display: flex; align-items: center; gap: 10px; }
+  main section h2::before { content: ""; flex: 0 0 12px; height: 12px; border-radius: 50%; background: var(--c);
+    box-shadow: 0 0 0 4px var(--cf); }
+  main section li::marker { color: var(--c); }
+  main section b, main section strong { color: #fff; }
   /* /menu-web */
 </style>
 <!-- flota-desc --><style>
