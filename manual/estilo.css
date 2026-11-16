@@ -84,8 +84,12 @@ figcaption{color:var(--suave);font-size:13px;text-align:center;margin-top:7px}
 .visor{position:fixed;inset:0;z-index:60;background:#0b0e12;display:none;flex-direction:column;align-items:center;justify-content:center;padding:14px 10px 10px}
 .visor.ver{display:flex}
 .visor figure{margin:0;flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;max-width:100%}
-.visor img{max-height:calc(100vh - 130px);max-width:94vw;width:auto;border:0;border-radius:26px;box-shadow:0 18px 50px rgba(0,0,0,.6);transition:opacity .25s;cursor:default}
-.visor figcaption{color:#e8edf0;font-size:16px;font-weight:600;margin-top:10px}
+.visor .marco{position:relative;display:inline-block;line-height:0}
+.visor img{max-height:calc(100vh - 96px);max-width:94vw;width:auto;border:0;border-radius:26px;box-shadow:0 18px 50px rgba(0,0,0,.6);transition:opacity .25s;cursor:default}
+/* título dentro del recuadro de color, en la franja libre bajo el móvil */
+.visor figcaption{position:absolute;left:50%;bottom:2.6%;transform:translateX(-50%);margin:0;white-space:nowrap;line-height:1.2;
+  background:rgba(255,255,255,.94);color:var(--ac2);font-weight:800;font-size:min(clamp(17px,2.9vh,28px),4.4vw);letter-spacing:.01em;
+  padding:.28em .95em;border-radius:40px;box-shadow:0 6px 18px rgba(0,0,0,.28);max-width:92%;overflow:hidden;text-overflow:ellipsis}
 .visor .vb{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:28px;cursor:pointer}
 .visor .vb:hover{background:rgba(255,255,255,.28)}.visor .ant{left:12px}.visor .sig{right:12px}
 .visor .cerrar{position:absolute;top:10px;right:12px;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:24px;cursor:pointer}

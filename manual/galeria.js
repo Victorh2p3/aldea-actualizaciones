@@ -12,7 +12,7 @@
   v.setAttribute('aria-label', 'Capturas en grande');
   v.innerHTML = '<button class="cerrar" aria-label="Cerrar">✕</button>' +
     '<button class="vb ant" aria-label="Anterior">‹</button>' +
-    '<figure><img alt=""><figcaption></figcaption></figure>' +
+    '<figure><div class="marco"><img alt=""><figcaption></figcaption></div></figure>' +
     '<button class="vb sig" aria-label="Siguiente">›</button>' +
     '<div class="pie-v"><span class="cuenta"></span><button class="pausa"></button></div>' +
     '<div class="prog"><i></i></div>';
