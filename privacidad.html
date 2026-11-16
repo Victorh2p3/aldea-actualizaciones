@@ -39,6 +39,16 @@
   @media (max-width: 480px) { .menu-sup a { font-size: 13px; padding: 7px 8px; } .menu-sup .marca { padding: 6px 4px; } }
   /* /menu-web */
 </style>
+<!-- flota-desc --><style>
+  .flota-desc { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50;
+                display: inline-flex; align-items: center; gap: 6px; background: #4a90d9; color: #fff !important;
+                text-decoration: none !important; font: 800 16px/1.1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+                padding: 13px 18px; border-radius: 40px; box-shadow: 0 8px 24px rgba(0,0,0,.40); border: 2px solid rgba(255,255,255,.85); }
+  .flota-desc:hover { background: #3a7cc4; }
+  .flota-desc small { font-weight: 600; font-size: 12px; opacity: .85; }
+  body { padding-bottom: 76px; }
+  @media print { .flota-desc { display: none; } }
+</style><!-- /flota-desc -->
 </head>
 <body>
 <nav class="menu-sup" aria-label="Menú principal"><!-- menu-web -->
@@ -134,5 +144,6 @@
   <footer>ALDEA · © VicH. · autor y propietario · <a href="terminos.html">Términos de uso</a> · <a href="index.html">Volver a la descarga</a></footer>
 </main>
 <script src="correo.js" defer></script>
+<!-- flota-desc --><a class="flota-desc" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.56/ALDEA-3.56.apk" aria-label="Descargar ALDEA 3.56 para Android">⬇ Descargar ALDEA <small>3.56</small></a><!-- /flota-desc -->
 </body>
 </html>
