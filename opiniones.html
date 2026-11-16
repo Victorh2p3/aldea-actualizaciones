@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-Js+jef1ecD3uLIn+9mL8BLmTx+JEgByNN7l8w6ePH8Q='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://aldea.aldea.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'"><!-- csp-aldea -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>ALDEA · Opiniones</title>
+<meta name="description" content="Opiniones de usuarios reales de ALDEA: solo se pueden dejar desde la app activada.">
+<meta name="theme-color" content="#12151b">
+<style>
+  :root { --bg: #12151b; --bg2: #1e2430; --tarjeta: #1a1d24; --borde: #2a2d36; --texto: #f0f1f4; --gris: #9a9aa5; --azul: #4a90d9; --oro: #f5b301; }
+  * { box-sizing: border-box; }
+  html { background: var(--bg2); }
+  body { margin: 0; background: linear-gradient(180deg, var(--bg), var(--bg2)) fixed; color: var(--texto);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.55; }
+  main { max-width: 640px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 30px; margin: 0 0 4px; }
+  .sub { color: var(--gris); margin: 0 0 20px; }
+  .media { display: flex; align-items: center; gap: 14px; background: var(--tarjeta); border: 1px solid var(--borde);
+           border-radius: 14px; padding: 14px 16px; margin-bottom: 14px; }
+  .media b { font-size: 36px; }
+  .estrellas { color: var(--oro); letter-spacing: 2px; }
+  .op { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px; padding: 12px 16px; margin-bottom: 10px; }
+  .op .cab { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .op .quien { color: var(--gris); font-size: 14px; }
+  .op p { margin: 6px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .resp { margin-top: 10px; padding: 8px 12px; border-left: 3px solid var(--azul); background: rgba(74,144,217,.08); border-radius: 6px; font-size: 15px; }
+  .resp b { color: var(--azul); }
+  .nota { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px; padding: 4px 16px 10px; margin-top: 18px; }
+  .nota h2 { font-size: 18px; margin: 12px 0 6px; }
+  a { color: var(--azul); }
+  footer { color: var(--gris); font-size: 14px; text-align: center; margin-top: 28px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>⭐ Opiniones</h1>
+  <p class="sub">De personas que usan ALDEA. Solo se pueden dejar desde la propia app.</p>
+  <div id="resumen"></div>
+  <div id="lista"><p class="sub">Cargando opiniones…</p></div>
+
+  <section class="nota">
+    <h2>Cómo sabemos que son de usuarios reales</h2>
+    <p>Las opiniones solo se pueden escribir desde ALDEA ya activada (<b>Ayuda y contacto › Dejar mi opinión</b>), y
+      cada móvil puede dejar una. El servidor comprueba la firma de activación del móvil, así que no se pueden enviar
+      desde fuera de la app.</p>
+    <p>El autor las lee antes de publicarlas para quitar insultos, datos personales o publicidad, <b>no por si son buenas
+      o malas</b>. Se publican el alias que elige quien opina (puede no poner ninguno), las estrellas, el texto y el mes.
+      Quien opina puede cambiarla o retirarla cuando quiera desde la app.</p>
+  </section>
+
+  <footer>ALDEA · © VicH. · <a href="index.html">Inicio</a> · <a href="privacidad.html">Privacidad</a> ·
+    <a href="terminos.html">Términos de uso</a></footer>
+</main>
+<script>
+(function () {
+  var API = 'https://aldea.aldea.workers.dev/control/api/opiniones/publicas';
+  var lista = document.getElementById('lista'), resumen = document.getElementById('resumen');
+  function el(etiqueta, clase, texto) {
+    var e = document.createElement(etiqueta);
+    if (clase) e.className = clase;
+    if (texto !== undefined) e.textContent = texto;
+    return e;
+  }
+  function estrellas(n) { return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n); }
+  var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  function mes(am) { var p = String(am || '').split('-'); return p.length === 2 ? MESES[(+p[1]) - 1] + ' de ' + p[0] : ''; }
+  fetch(API, { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+    lista.textContent = '';
+    if (!d.total) {
+      lista.appendChild(el('p', 'sub', 'Aún no hay opiniones publicadas. ¿Usas ALDEA? Deja la tuya en Ayuda y contacto › Dejar mi opinión.'));
+      return;
+    }
+    var m = el('div', 'media');
+    m.appendChild(el('b', '', String(d.media).replace('.', ',')));
+    var t = el('div');
+    t.appendChild(el('div', 'estrellas', estrellas(Math.round(d.media))));
+    t.appendChild(el('div', 'sub', d.total + (d.total === 1 ? ' opinión' : ' opiniones')));
+    m.appendChild(t);
+    resumen.appendChild(m);
+    d.opiniones.forEach(function (o) {
+      var c = el('div', 'op'), cab = el('div', 'cab');
+      cab.appendChild(el('span', 'estrellas', estrellas(o.estrellas)));
+      cab.appendChild(el('span', 'quien', o.alias + ' · ' + mes(o.fecha)));
+      c.appendChild(cab);
+      c.appendChild(el('p', '', o.texto));
+      if (o.respuesta) {
+        var r = el('div', 'resp');
+        r.appendChild(el('b', '', 'Respuesta del autor: '));
+        r.appendChild(document.createTextNode(o.respuesta));
+        c.appendChild(r);
+      }
+      lista.appendChild(c);
+    });
+  }).catch(function () {
+    lista.textContent = '';
+    lista.appendChild(el('p', 'sub', 'No se han podido cargar las opiniones ahora mismo. Prueba más tarde.'));
+  });
+})();
+</script>
+</body>
+</html>
