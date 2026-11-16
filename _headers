@@ -1,6 +1,6 @@
 # Cabeceras de seguridad para Cloudflare (GitHub Pages ignora este archivo; allí vale el <meta> CSP). Generado por promo/web_seguridad.py.
 /*
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-Js+jef1ecD3uLIn+9mL8BLmTx+JEgByNN7l8w6ePH8Q=' 'sha256-bQ8dqOQ36PuxZvfXGj5jTniT+zmbcZlRRl4tZp4QDc0=' 'sha256-hNU2UbKQawahTAExohxaX4RJ0etr8VyPomsJiXfrJr0=' 'sha256-r8HvTMp2VN27yvfDL2ui9ot2Nn7ljdpWqC9rl4IemL0='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://aldea.aldea.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'sha256-Js+jef1ecD3uLIn+9mL8BLmTx+JEgByNN7l8w6ePH8Q=' 'sha256-OXFlCMefJzn5G4RhF1BPSGfj1pzZKUdWG1y8HMLGAOw=' 'sha256-bQ8dqOQ36PuxZvfXGj5jTniT+zmbcZlRRl4tZp4QDc0=' 'sha256-r8HvTMp2VN27yvfDL2ui9ot2Nn7ljdpWqC9rl4IemL0='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://aldea.aldea.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'; frame-ancestors 'none'
   Strict-Transport-Security: max-age=63072000; includeSubDomains
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
