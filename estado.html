@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>ALDEA · Estado de tu móvil</title>
+<meta name="theme-color" content="#12151b">
+<style>
+  :root {
+    --bg: #12151b; --bg2: #1e2430; --tarjeta: #1a1d24; --borde: #2a2d36;
+    --texto: #f0f1f4; --gris: #9a9aa5; --azul: #4a90d9; --verde: #3fb27f; --ambar: #e0a84a; --rosa: #e0637a;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg2); }
+  body { margin: 0; background: linear-gradient(180deg, var(--bg), var(--bg2)) fixed; color: var(--texto);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
+  main { max-width: 560px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 1.5rem; margin: 0 0 6px; }
+  p { margin: 0 0 12px; }
+  .gris { color: var(--gris); font-size: .9rem; }
+  .tarjeta { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px; padding: 16px; margin: 16px 0; }
+  label { display: block; font-size: .9rem; color: var(--gris); margin-bottom: 6px; }
+  input { width: 100%; font: inherit; font-size: 1.15rem; letter-spacing: .06em; text-transform: uppercase;
+          padding: 12px 14px; border-radius: 10px; border: 1px solid var(--borde); background: #12151b; color: var(--texto); }
+  input:focus { outline: 2px solid var(--azul); }
+  button { font: inherit; padding: 11px 16px; border: 0; border-radius: 10px; background: var(--azul); color: #fff; cursor: pointer; }
+  button.sec { background: #2a2d36; }
+  .fila { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .res { border-radius: 14px; padding: 14px 16px; margin-top: 14px; border: 1px solid; }
+  .res.ok { background: #12261d; border-color: var(--verde); }
+  .res.espera { background: #2a2614; border-color: var(--ambar); }
+  .res.mal { background: #2a1519; border-color: var(--rosa); }
+  .res b.t { display: block; font-size: 1.05rem; margin-bottom: 4px; }
+  .codigo { display: block; word-break: break-all; font-family: ui-monospace, Consolas, monospace; font-size: .85rem;
+            background: #12151b; border: 1px solid var(--borde); border-radius: 8px; padding: 10px; margin: 10px 0 0; user-select: all; }
+  ol { padding-left: 20px; margin: 8px 0 0; }
+  .oculto { display: none; }
+  footer { margin-top: 28px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Estado de tu móvil</h1>
+  <p class="gris">Escribe el número que te enseña ALDEA para ver si ya está autorizado.</p>
+
+  <div class="tarjeta">
+    <label for="num">Número de tu móvil (16 caracteres)</label>
+    <input id="num" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="24">
+    <div class="fila"><button id="ver">Consultar</button></div>
+    <div id="res" class="res oculto" role="status"></div>
+  </div>
+
+  <div class="tarjeta">
+    <b>Cómo se activa ALDEA</b>
+    <ol>
+      <li>Abre ALDEA: te enseña tu número. Pulsa <i>Copiar</i> o <i>Compartir</i>.</li>
+      <li>Mándaselo al autor por el medio que quieras (WhatsApp, mensaje…).</li>
+      <li>Cuando te autorice, consulta esta página: te saldrá tu código de activación.</li>
+      <li>Pégalo en ALDEA y ya está.</li>
+    </ol>
+  </div>
+
+  <footer class="gris">
+    🔒 Privacidad: tu número se comprueba <b>en este navegador</b>. No se envía a ningún servidor; la página solo descarga
+    una lista de resultados cifrados en los que nadie puede ver quién es quién. ALDEA no pide tu nombre ni tu teléfono.
+  </footer>
+</main>
+
+<script>
+// ==NUCLEO== (la misma cuenta la hace gestionar_activaciones.py: si se cambia aquí, cambiarla allí)
+const FORMATO_NUMERO = /^[0-9A-HJKMNP-TV-Z]{16}$/;
+function normalizar(t) {
+  return String(t || '').toUpperCase().replace(/[^0-9A-Z]/g, '').replace(/O/g, '0').replace(/[IL]/g, '1');
+}
+async function huella(numero16) {
+  const bytes = new TextEncoder().encode('ALDEA-ESTADO|' + numero16);
+  const h = await crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(h)).map(x => x.toString(16).padStart(2, '0')).join('');
+}
+// ==/NUCLEO==
+
+const $ = id => document.getElementById(id);
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c])); }
+
+function pintar(clase, titulo, cuerpo) {
+  const r = $('res');
+  r.className = 'res ' + clase;
+  r.innerHTML = '<b class="t">' + titulo + '</b>' + cuerpo;
+}
+
+async function consultar() {
+  const n = normalizar($('num').value);
+  if (!FORMATO_NUMERO.test(n)) {
+    pintar('mal', 'Revisa el número', '<span class="gris">Son 16 letras y números, tal como aparecen en ALDEA (los guiones dan igual).</span>');
+    return;
+  }
+  if (!window.crypto || !crypto.subtle) {
+    pintar('mal', 'Este navegador no puede comprobarlo', '<span class="gris">Prueba con otro navegador actualizado.</span>');
+    return;
+  }
+  let lista;
+  try {
+    const r = await fetch('activaciones.json?t=' + Date.now(), {cache: 'no-store'});
+    if (!r.ok) throw new Error(r.status);
+    lista = await r.json();
+  } catch (e) {
+    pintar('mal', 'No se pudo consultar', '<span class="gris">Comprueba tu conexión y vuelve a intentarlo.</span>');
+    return;
+  }
+  const h = await huella(n);
+  const cuando = lista.actualizado ? '<p class="gris" style="margin:10px 0 0">Lista actualizada: ' + esc(lista.actualizado) + '</p>' : '';
+  if ((lista.bloqueados || []).includes(h)) {
+    pintar('mal', '⛔ Este móvil está bloqueado', '<span class="gris">Si crees que es un error, habla con el autor.</span>' + cuando);
+  } else if (lista.activaciones && lista.activaciones[h]) {
+    const cod = lista.activaciones[h];
+    pintar('ok', '✅ Autorizado',
+      '<span class="gris">Este es tu código de activación. Cópialo y pégalo en ALDEA.</span>'
+      + '<span class="codigo" id="cod">' + esc(cod) + '</span>'
+      + '<div class="fila"><button id="copiar">Copiar el código</button></div>' + cuando);
+    $('copiar').onclick = async () => {
+      try { await navigator.clipboard.writeText(cod); $('copiar').textContent = 'Copiado ✓'; }
+      catch (e) {
+        const rango = document.createRange(); rango.selectNodeContents($('cod'));
+        const sel = getSelection(); sel.removeAllRanges(); sel.addRange(rango);
+        $('copiar').textContent = 'Selecciónalo y cópialo';
+      }
+    };
+  } else {
+    pintar('espera', '⏳ Todavía no está autorizado',
+      '<span class="gris">Si ya le mandaste el número al autor, espera a que te autorice y vuelve a consultar. '
+      + 'Si no se lo has mandado, hazlo desde ALDEA.</span>' + cuando);
+  }
+}
+
+$('ver').onclick = consultar;
+$('num').addEventListener('keydown', e => { if (e.key === 'Enter') consultar(); });
+// Si llega con el número en la dirección (#NUMERO), lo rellena; el número no sale del navegador
+if (location.hash.length > 1) { $('num').value = decodeURIComponent(location.hash.slice(1)); consultar(); }
+</script>
+</body>
+</html>
