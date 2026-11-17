@@ -46,6 +46,29 @@
   .menu-sup a:hover, .menu-sup a.activo { background: #2a3446; }
   .menu-sup a.desc { background: #4a90d9; color: #fff; }
   @media (max-width: 480px) { .menu-sup a { font-size: 13px; padding: 7px 8px; } .menu-sup .marca { padding: 6px 4px; } }
+  /* menu-alegre: cada enlace con un color de la app, raya de colores y botón de descarga vivo (17-nov-2026) */
+  .menu-sup { border-bottom: 0; box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+  .menu-sup::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+    background: linear-gradient(90deg, #4a90d9, #3fb27f, #e0a84a, #e0637a, #4a90d9); background-size: 200% 100%;
+    animation: menuRaya 12s linear infinite; }
+  @keyframes menuRaya { to { background-position: 200% 0; } }
+  .menu-sup .marca { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-size: 16px; }
+  .menu-sup .marca::before { content: ""; width: 22px; height: 22px; border-radius: 6px; flex: 0 0 22px;
+    background: linear-gradient(#4a90d9,#4a90d9) 0 0/46% 46% no-repeat, linear-gradient(#3fb27f,#3fb27f) 100% 0/46% 46% no-repeat,
+                linear-gradient(#e0a84a,#e0a84a) 0 100%/46% 46% no-repeat, linear-gradient(#e0637a,#e0637a) 100% 100%/46% 46% no-repeat; }
+  .menu-sup .marca:hover { background: transparent; }
+  .menu-sup a:not(.marca):not(.desc) { --c: #4a90d9; --cf: rgba(74,144,217,.22); transition: background .15s, color .15s, transform .15s; }
+  .menu-sup a:nth-child(4n+3):not(.desc) { --c: #3fb27f; --cf: rgba(63,178,127,.22); }
+  .menu-sup a:nth-child(4n+4):not(.desc) { --c: #e0a84a; --cf: rgba(224,168,74,.22); }
+  .menu-sup a:nth-child(4n+5):not(.desc) { --c: #e0637a; --cf: rgba(224,99,122,.22); }
+  .menu-sup a:not(.marca):not(.desc):hover { background: var(--cf); color: #fff; transform: translateY(-1px); }
+  .menu-sup a:not(.marca):not(.desc).activo { background: var(--cf); color: #fff; box-shadow: inset 0 -3px 0 var(--c); }
+  .menu-sup a.desc { background: linear-gradient(135deg, #4a90d9, #3fb27f); padding: 8px 16px; margin-left: 4px;
+    box-shadow: 0 4px 14px rgba(63,178,127,.35); animation: menuLatido 3s ease-in-out infinite; }
+  .menu-sup a.desc:hover { filter: brightness(1.1); }
+  @keyframes menuLatido { 0%,100% { box-shadow: 0 4px 14px rgba(63,178,127,.35); } 50% { box-shadow: 0 4px 22px rgba(74,144,217,.65); } }
+  @media (prefers-reduced-motion: reduce) { .menu-sup::after, .menu-sup a.desc { animation: none; } }
+  /* /menu-alegre */
   /* Aspecto alegre con los colores de la app (azul, verde, ámbar, rosa). 16-nov-2026 */
   body { background:
            radial-gradient(620px 420px at 0% 0%, rgba(74,144,217,.20), transparent 62%),
@@ -92,10 +115,10 @@
   <a class="marca" href="index.html">ALDEA</a>
   <a href="manual/index.html">📖 Manual</a>
   <a class="activo" href="novedades.html" aria-current="page">✨ Novedades</a>
-  <a href="privacidad.html">Privacidad</a>
+  <a href="privacidad.html">🔒 Privacidad</a>
   <a href="opiniones.html">⭐ Opiniones</a>
-  <a href="terminos.html">Términos</a>
-  <a href="index.html#contacto">Contacto</a>
+  <a href="terminos.html">📜 Términos</a>
+  <a href="index.html#contacto">✉️ Contacto</a>
   <a class="desc" href="index.html">⬇ Descargar</a>
 </nav><!-- /menu-web -->
 <main>
