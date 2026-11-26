@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' ; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self' https://aldea.aldea.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'; manifest-src 'none'; worker-src 'none'"><!-- csp-aldea -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12. Qué datos recibe el autor: ejemplos reales · Manual de ALDEA</title>
+<meta name="description" content="El autor de ALDEA quiere que veas exactamente qué le llega de tu móvil. Tus datos (medicamentos, coches, viviendas, libros, viajes…) no salen nunca del móv">
+<meta name="theme-color" content="#1f4e5f">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="shortcut icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="estilo.css">
+<!-- flota-desc --><style>
+  .flota-desc { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50;
+                display: inline-flex; align-items: center; gap: 6px; background: #4a90d9; color: #fff !important;
+                text-decoration: none !important; font: 800 16px/1.1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+                padding: 13px 18px; border-radius: 40px; box-shadow: 0 8px 24px rgba(0,0,0,.40); border: 2px solid rgba(255,255,255,.85); }
+  .flota-desc:hover { background: #3a7cc4; }
+  .flota-desc small { font-weight: 600; font-size: 12px; opacity: .85; }
+  body { padding-bottom: 76px; }
+  @media print { .flota-desc { display: none; } }
+</style><!-- /flota-desc -->
+</head>
+<body style="--ac:#e0a84a;--ac2:#a17835">
+<header class="barra"><div class="barra-in">
+<a class="marca" href="../index.html"><span class="logo" aria-hidden="true"><span style="background:#4A90D9"></span><span style="background:#3FB27F"></span><span style="background:#E0A84A"></span><span style="background:#E0637A"></span></span> ALDEA</a>
+<details class="mm" id="mm"><summary>📖 Manual <span aria-hidden="true">▾</span></summary><div class="mm-panel"><div class="mm-in"><a class="mm-todo" href="index.html">Ver el índice completo y buscar →</a><div class="mm-cols"><div class="mm-col" style="--g:#4a90d9"><h3>🚀 Primeros pasos</h3><ul><li><a href="introduccion.html"><span class="n">1</span><span>1. Introducción</span></a></li><li><a href="avisos-importantes.html"><span class="n">2</span><span>2. Avisos importantes</span></a></li><li><a href="primeros-pasos.html"><span class="n">3</span><span>3. Primeros pasos</span></a></li><li><a href="el-portal-y-los-modulos.html"><span class="n">4</span><span>4. El portal y los módulos</span></a></li></ul></div><div class="mm-col" style="--g:#3fb27f"><h3>📱 Manual de las aplicaciones</h3><ul><li><a href="las-aplicaciones.html"><span class="n">5</span><span>5. Las aplicaciones</span></a></li><li><a href="flota.html"><img src="img/mod_flota.svg" alt=""><span>5.1 🚗 Flota</span></a></li><li><a href="casa.html"><img src="img/mod_casa.svg" alt=""><span>5.2 🏠 Casa</span></a></li><li><a href="inventario.html"><img src="img/mod_inventario.svg" alt=""><span>5.3 📦 Inventario</span></a></li><li><a href="salud.html"><img src="img/mod_medico.svg" alt=""><span>5.4 🩺 Salud</span></a></li><li><a href="libros.html"><img src="img/mod_libros.svg" alt=""><span>5.5 📚 Libros</span></a></li><li><a href="mascotas.html"><img src="img/mod_mascotas.svg" alt=""><span>5.6 🐾 Mascotas</span></a></li><li><a href="personas-a-cargo.html"><span class="n">5.7</span><span>5.7 🧒 Personas a cargo</span></a></li><li><a href="cuidado-personal.html"><img src="img/mod_cuidado.svg" alt=""><span>5.8 🌿 Cuidado personal</span></a></li><li><a href="vinoteca.html"><img src="img/mod_vinoteca.svg" alt=""><span>5.9 🍷 Vinoteca</span></a></li><li><a href="viajes.html"><span class="n">5.10</span><span>5.10 🧳 Viajes</span></a></li><li><a href="fotos-y-documentos.html"><span class="n">6</span><span>6. Fotos y documentos</span></a></li></ul></div><div class="mm-col" style="--g:#e0a84a"><h3>⚙️ Configuración</h3><ul><li><a href="inteligencia-artificial-opcional.html"><span class="n">7</span><span>7. Inteligencia artificial (opcional)</span></a></li><li><a href="ayudas-externas-como-configurarlas.html"><span class="n">8</span><span>8. Ayudas externas: cómo configurarlas</span></a></li><li><a href="copias-de-seguridad.html"><span class="n">9</span><span>9. Copias de seguridad</span></a></li><li><a href="actualizaciones-licencia-y-contacto-con.html"><span class="n">10</span><span>10. Actualizaciones, licencia y contacto con el autor</span></a></li><li><a href="privacidad-y-seguridad.html"><span class="n">11</span><span>11. Privacidad y seguridad</span></a></li><li><a href="que-datos-recibe-el-autor-ejemplos-reale.html"><span class="n">12</span><span>12. Qué datos recibe el autor: ejemplos reales</span></a></li></ul></div><div class="mm-col" style="--g:#e0637a"><h3>❓ Ayuda</h3><ul><li><a href="solucion-de-problemas.html"><span class="n">13</span><span>13. Solución de problemas</span></a></li><li><a href="glosario.html"><span class="n">14</span><span>14. Glosario</span></a></li><li><a href="desinstalar.html"><span class="n">A</span><span>Anexo A. Desinstalar</span></a></li><li><a href="licencia-de-uso.html"><span class="n">B</span><span>Anexo B. Licencia de uso</span></a></li></ul></div></div></div></div></details>
+<a href="index.html#buscar">🔎 Buscar</a>
+<a href="../index.html">⬇ Inicio</a>
+</div></header>
+<section class="hero"><div class="hero-in"><div class="hero-ico"><b>12</b></div><div><p class="hero-miga"><a href="index.html">Manual</a> › ⚙️ Configuración</p><h1>12. Qué datos recibe el autor: ejemplos reales</h1><p class="hero-sub">El autor de ALDEA quiere que veas exactamente qué le llega de tu móvil. Tus datos (medicamentos, coches, viviendas, libros, viajes…) no salen nunca…</p></div></div></section>
+<nav class="chips" aria-label="En esta página"><div class="chips-in"><b>En esta página</b><a href="#cada-dia-licencia-y-actualizaciones">1. Cada día: licencia y actualizaciones</a><a href="#si-aldea-falla-informe-tecnico">2. Si ALDEA falla: informe técnico</a><a href="#solo-cuando-tu-lo-haces">3. Solo cuando tú lo haces</a><a href="#lo-que-ve-el-autor-en-su-panel">4. Lo que ve el autor en su panel</a></div></nav>
+<main>
+
+
+<p>El autor de ALDEA quiere que veas <b>exactamente</b> qué le llega de tu móvil. Tus datos (medicamentos, coches, viviendas, libros, viajes…) <b>no salen nunca</b> del móvil. Al servidor del autor solo llegan los envíos de esta página. Los ejemplos son reales en su forma; los códigos y las cifras están inventados.</p>
+<h2 id="cada-dia-licencia-y-actualizaciones">1. Cada día: licencia y actualizaciones</h2>
+<p>ALDEA se conecta sola, más o menos una vez al día, para confirmar la licencia y ver si hay una versión nueva. Esto es todo lo que envía:</p>
+<div class="tabla"><table><tr><th>Lo que se envía</th><th>Ejemplo</th></tr><tr><td>Código del móvil (no dice quién eres)</td><td>A7F3-29KD-Q8M2</td></tr><tr><td>Código de activación</td><td>ALD-5H2K-9PQW</td></tr><tr><td>Versión de ALDEA</td><td>3.71 (165)</td></tr><tr><td>Modelo del móvil y Android</td><td>Samsung SM-A546B · Android 14</td></tr><tr><td>Huella de la firma de la app</td><td>Una cadena de letras y números: la misma para todos; sirve para saber que la app es la original</td></tr><tr><td>Huellas para el cambio de móvil</td><td>Dos resúmenes cifrados (del «secreto» de la instalación y de tu código de recuperación). De una huella no se puede sacar el original</td></tr><tr><td>Peticiones pendientes</td><td>«Activar Vehículos» (solo si pediste activar un módulo)</td></tr><tr><td>Cifras de uso (ver el ejemplo de abajo)</td><td>Cuántos registros hay en cada módulo y cuánto ocupan</td></tr></table></div>
+<p>Ejemplo de las <b>cifras de uso</b> de un móvil cualquiera (solo números):</p>
+<div class="tabla"><table><tr><th>Módulo</th><th>Lo que llega al autor</th><th>Lo que NO llega</th></tr><tr><td>🚗 Vehículos</td><td>2 vehículos · 48 registros · 5 fotos (3,1 MB)</td><td>Matrículas, marcas, kilómetros, talleres, importes</td></tr><tr><td>🏠 Casa</td><td>1 vivienda · 120 registros · 9 fotos (6,0 MB)</td><td>Dirección, recibos, compañías, contactos</td></tr><tr><td>📦 Inventario</td><td>85 artículos · 90 registros · 30 fotos (12 MB)</td><td>Qué cosas son, dónde están, precios</td></tr><tr><td>🩺 Salud</td><td>3 personas · 210 registros · 14 fotos (9,5 MB)</td><td>Nombres, medicamentos, enfermedades, citas, documentos</td></tr><tr><td>📒 Diabetes</td><td>Nada (ni siquiera cuántos registros)</td><td>Todo</td></tr><tr><td>📚 Libros</td><td>140 libros · 160 registros</td><td>Títulos, autores, lecturas, préstamos</td></tr><tr><td>🐾 Mascotas</td><td>1 mascota · 22 registros · 2 fotos</td><td>Nombre, chip, vacunas, veterinario</td></tr><tr><td>👪 Personas a cargo</td><td>4 personas · 37 registros</td><td>Nombres, colegios, horarios, direcciones</td></tr><tr><td>🍷 Vinoteca</td><td>30 vinos · 45 registros</td><td>Qué vinos, catas, tiendas</td></tr><tr><td>🌿 Cuidado personal</td><td>12 citas y sesiones</td><td>Servicios, sitios, gastos</td></tr><tr><td>🧳 Viajes</td><td>2 viajes · 3 archivos (1,2 MB)</td><td>Destinos, fechas, reservas, viajeros</td></tr><tr><td>Tamaño</td><td>Tus datos: 46 MB · la app: 120 MB</td><td>—</td></tr></table></div>
+<p>Para qué le sirven al autor: saber qué versión mantener, qué módulos se usan y cuáles no, y si a alguien se le llena el móvil.</p>
+<h2 id="si-aldea-falla-informe-tecnico">2. Si ALDEA falla: informe técnico</h2>
+<p>Cuando algo falla, ALDEA guarda un informe y lo envía en la siguiente conexión. Ejemplo:</p>
+<div class="tabla"><table><tr><th>Lo que se envía</th><th>Ejemplo</th></tr><tr><td>Qué falló y dónde</td><td>«KeyError en GET /api/coches/&lt;id&gt;» (la ruta genérica, sin tus datos)</td></tr><tr><td>Dónde está el fallo en el programa</td><td>flota_api.py:812 en detalle_coche</td></tr><tr><td>Cuántas veces y cuándo</td><td>3 veces · 26/11/2026 10:42</td></tr><tr><td>Versión, modelo y Android</td><td>3.71 · Samsung SM-A546B · Android 14</td></tr></table></div>
+<p><b>Nunca</b> va el mensaje del error (podría llevar un dato tuyo) ni lo que estabas escribiendo.</p>
+<h2 id="solo-cuando-tu-lo-haces">3. Solo cuando tú lo haces</h2>
+<div class="tabla"><table><tr><th>Cuando…</th><th>Le llega al autor</th></tr><tr><td>Pides el alta</td><td>El código del móvil</td></tr><tr><td>Le escribes («Escribir al autor» o el botón 📸 manteniéndolo pulsado)</td><td>Lo que escribas y, si la adjuntas, la imagen o el audio (se borran a los 90 días). Con «Solo dónde estoy», solo el menú en el que estás y tu texto</td></tr><tr><td>Dejas tu opinión</td><td>Las estrellas, el texto y el alias que elijas (se publica solo si lo aceptas y el autor la aprueba)</td></tr><tr><td>Pasas ALDEA a otro móvil</td><td>El código y el modelo de los dos móviles y la fecha, para dejar constancia del cambio</td></tr></table></div>
+<p>Como en cualquier conexión a internet, el servidor ve también la <b>dirección IP</b> desde la que se conecta el móvil.</p>
+<h2 id="lo-que-ve-el-autor-en-su-panel">4. Lo que ve el autor en su panel</h2>
+<p>En su panel de control, tu móvil aparece así (ejemplo):</p>
+<div class="caja azul"><b>Así te ve el autor</b><br><p><b>Usuario nº 12</b> · A7F3-29KD-Q8M2 · Samsung SM-A546B · Android 14 · ALDEA 3.71</p><p>Alta: 14/11/2026 · Última conexión: hoy, 09:15 · Módulos: Salud activo, Vehículos activo, Libros en prueba</p><p>Uso: Vehículos 2 · Salud 3 personas · Libros 140 · Tus datos 46 MB</p></div>
+<p>El autor puede ponerle a ese número un nombre o una nota para reconocerte (por ejemplo, si le escribiste). Eso lo escribe él en su panel: no sale de tu móvil.</p>
+<div class="caja verde"><b>En resumen</b><br><p>El autor <b>no puede</b> ver, abrir ni descargar tus datos: no le llegan. Si quieres comprobarlo, en el portal › Privacidad › <b>Compruébalo tú</b> tienes cómo ver cada conexión de ALDEA.</p><p>Para preguntar qué datos de tu móvil tiene el servidor, o pedir que se borren: <b><span class="correo">aldea.vich.app [arroba] gmail.com</span></b>.</p></div>
+<nav class="navpie" aria-label="Páginas"><a href="privacidad-y-seguridad.html"><small>← Anterior</small>11. Privacidad y seguridad</a><a href="solucion-de-problemas.html" style="text-align:right"><small>Siguiente →</small>13. Solución de problemas</a></nav>
+<footer>ALDEA 3.72-prueba12 · © VicH. · autor y propietario<br><span class="correo">aldea.vich.app [arroba] gmail.com</span> · <a href="../privacidad.html">Privacidad y condiciones</a> · <a href="../terminos.html">Términos de uso</a></footer>
+</main>
+<script src="menu.js" defer></script>
+<script src="galeria.js" defer></script>
+<script src="../correo.js" defer></script>
+<!-- flota-desc --><a class="flota-desc" href="https://github.com/Victorh2p3/aldea-actualizaciones/releases/download/v3.71/ALDEA-3.71.apk" aria-label="Descargar ALDEA 3.71 para Android">⬇ Descargar ALDEA <small>3.71</small></a><!-- /flota-desc -->
+</body>
+</html>
